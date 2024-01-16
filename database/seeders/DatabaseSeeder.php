@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CarroSeeder::class);
+        $this->call(ClienteSeeder::class);
+        $this->call(LocacaoSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
