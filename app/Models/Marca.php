@@ -1,5 +1,3 @@
-Marca
-
 <?php
 
 namespace App\Models;
