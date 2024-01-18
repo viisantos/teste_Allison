@@ -14,7 +14,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        $marcas = Marca::all();
+        return $marcas;
     }
 
     /**
@@ -35,7 +36,9 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        return 'chegamos até aqui';
+       $data = $request->all();
+       $marca = Marca::create($data);
+       dd($marca);
     }
 
     /**
@@ -46,7 +49,7 @@ class MarcaController extends Controller
      */
     public function show(Marca $marca)
     {
-        //
+        echo "chegamos no método show e recebemos a marca de id  ".$marca->id;
     }
 
     /**
