@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
+    public $marca;
+    public function __construct(Marca $marca){
+        $this->marca = $marca;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        $marcas = Marca::all();
-        return $marcas;
+        $marcas = $this->marca->all();
+        return $marcas->toJson();
     }
 
     /**
@@ -37,19 +41,23 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
        $data = $request->all();
-       $marca = Marca::create($data);
-       dd($marca);
+       $marca_ = $this->marca->create($data);
+       return $marca_;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Marca  $marca
+     * @param  Integer
      * @return \Illuminate\Http\Response
      */
-    public function show(Marca $marca)
+    public function show($id)
     {
-        echo "chegamos no método show e recebemos a marca de id  ".$marca->id;
+        $marca = $this->marca->find($id);
+        if($marca === null){
+            return ['erro' => 'Recurso pesquisado não existe'];
+        }
+        return $marca;
     }
 
     /**
@@ -67,11 +75,15 @@ class MarcaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Marca  $marca
+     * @param  Integer  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, $id)
     {
+        $marca = $this->marca->find($id);
+        if($marca === null){
+            return ['erro' => 'nao foi possivel realizar a atualizacao. Recurso solicitado nao existe'];
+        }
         $marca->update($request->all());
         return $marca;
     }
@@ -79,11 +91,15 @@ class MarcaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Marca  $marca
+     * @param  Integer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marca $marca)
+    public function destroy($id)
     {
+        $marca = $this->marca->find($id);
+        if($marca === null){
+            return ['erro' => 'recurso solicitado nao existe'];
+        }
         $marca->delete();
         return ["msg"=>"chegamos no método delete de marca"];
     }
