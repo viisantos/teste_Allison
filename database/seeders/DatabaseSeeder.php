@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CarroSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(LocacaoSeeder::class);
+        $this->call(CorporativaSeed::class);
+        $this->call(ProfileSeed::class);
         // \App\Models\User::factory(10)->create();
     }
 }
