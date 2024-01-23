@@ -14,13 +14,15 @@ class CorporativaSeed extends Seeder
      */
     public function run(): void
     {
-         // 1
-         DB::table('corporativa')->insert([
-            'nome' 		    => 'vitoria',
-            'sobrenome'     => 'santos',
-            'email'         => 'vitoria@gmail.com',
-			'pais' 		    => 'Brasil', 
-			'cidade' 		=> 'Rio de Janeiro'
+
+        DB::table('corporativa')->insert([
+            'profile_id'     => 1,
+            'cargo'          => 'Dev Junior',
+            'funcao'         => 'Dev Junior',
+            'tipo_de_tecnologia'  => 'Java',
+            'empresa'  => 'XPTO.SA',
+            'modalidade'  => 'Presencial',
+            'salario'  => 10.000
         ]);
     }
 }
