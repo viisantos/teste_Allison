@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Modelo;
+use App\Models\Allison_desafio_models\Corporativa;
 use Illuminate\Http\Request;
 
-class ModeloController extends Controller
+class CorporativaController extends Controller
 {
+    public $corp;
+
+    public function __construct(Corporativa $corp)
+    {
+        $this->corp = $corp;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class ModeloController extends Controller
      */
     public function index()
     {
-        //
+        $corp = $this->corp->all();
+
+        return $corp->toJson();
     }
 
     /**
@@ -30,32 +39,30 @@ class ModeloController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Modelo  $modelo
+     * @param  int
      * @return \Illuminate\Http\Response
      */
-    public function show(Modelo $modelo)
+    public function show($id)
     {
-        //
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Modelo  $modelo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Modelo $modelo)
+    public function edit(Corporativa $corp)
     {
         //
     }
@@ -63,23 +70,34 @@ class ModeloController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Modelo  $modelo
+     * @param  int  $corp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modelo $modelo)
+    public function update(Request $request, $id)
     {
-        //
+        $corp = $this->corp->find($id);
+        if ($corp === null) {
+            return ['erro' => 'nao foi possivel realizar a atualizacao. Recurso solicitado nao existe'];
+        }
+        $corp->update($request->all());
+
+        return $corp;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Modelo  $modelo
+     * @param  int
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modelo $modelo)
+    public function destroy($id)
     {
-        //
+        $corp = $this->corp->find($id);
+        if ($corp === null) {
+            return ['erro' => 'recurso solicitado nao existe'];
+        }
+        $corp->delete();
+
+        return ['msg' => 'chegamos no método delete de corp'];
     }
 }

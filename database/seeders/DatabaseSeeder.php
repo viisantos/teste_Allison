@@ -13,11 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CarroSeeder::class);
-        $this->call(ClienteSeeder::class);
-        $this->call(LocacaoSeeder::class);
-        $this->call(CorporativaSeed::class);
-        $this->call(ProfileSeed::class);
-        // \App\Models\User::factory(10)->create();
+        
+        // $this->call(CorporativaSeed::class);
+        // $this->call(ProfileSeed::class);
+        \App\Models\Allison_desafio_models\Profile::factory(10)->create();
+        \App\Models\Allison_desafio_models\Corporativa::factory(10)->create();
     }
 }

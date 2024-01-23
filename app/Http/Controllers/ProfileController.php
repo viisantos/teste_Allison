@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carro;
+use App\Models\Allison_desafio_models\Profile;
 use Illuminate\Http\Request;
 
-class CarroController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,7 +30,6 @@ class CarroController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,10 +40,9 @@ class CarroController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Carro  $carro
      * @return \Illuminate\Http\Response
      */
-    public function show(Carro $carro)
+    public function show(Profile $profile)
     {
         //
     }
@@ -52,10 +50,9 @@ class CarroController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Carro  $carro
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carro $carro)
+    public function edit(Profile $profile)
     {
         //
     }
@@ -63,11 +60,9 @@ class CarroController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Carro  $carro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carro $carro)
+    public function update(Request $request, Profile $profile)
     {
         //
     }
@@ -75,10 +70,9 @@ class CarroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Carro  $carro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carro $carro)
+    public function destroy(Profile $profile)
     {
         //
     }

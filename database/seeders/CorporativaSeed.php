@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class CorporativaSeed extends Seeder
 {
@@ -16,13 +14,33 @@ class CorporativaSeed extends Seeder
     {
 
         DB::table('corporativa')->insert([
-            'profile_id'     => 1,
-            'cargo'          => 'Dev Junior',
-            'funcao'         => 'Dev Junior',
-            'tipo_de_tecnologia'  => 'Java',
-            'empresa'  => 'XPTO.SA',
-            'modalidade'  => 'Presencial',
-            'salario'  => 10.000
+            'profile_id' => 1,
+            'cargo' => 'Dev Junior',
+            'funcao' => 'Dev Junior',
+            'tipo_de_tecnologia' => 'Java',
+            'empresa' => 'XPTO.SA',
+            'modalidade' => 'Presencial',
+            'salario' => 10.000,
+        ]);
+
+        DB::table('corporativa')->insert([
+            'profile_id' => 2,
+            'cargo' => 'Dev Pleno',
+            'funcao' => 'Dev Senior',
+            'tipo_de_tecnologia' => 'Laravel',
+            'empresa' => 'XPTO.SA',
+            'modalidade' => 'Hibrido',
+            'salario' => 10.050,
+        ]);
+
+        DB::table('corporativa')->insert([
+            'profile_id' => 3,
+            'cargo' => 'Dev Junior',
+            'funcao' => 'Dev Junior',
+            'tipo_de_tecnologia' => 'Python',
+            'empresa' => 'XPTO.SA',
+            'modalidade' => 'Remoto',
+            'salario' => 10.100,
         ]);
     }
 }

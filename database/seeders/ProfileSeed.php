@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class ProfileSeed extends Seeder
 {
@@ -16,27 +14,27 @@ class ProfileSeed extends Seeder
     {
         // 1
         DB::table('profile')->insert([
-            'nome' 		    => 'vitoria',
-            'sobrenome'     => 'santos',
-            'email'         => 'vitoria@gmail.com',
-			'pais' 		    => 'Brasil',
-			'cidade' 		=> 'Rio de Janeiro'
+            'nome' => 'vitoria',
+            'sobrenome' => 'santos',
+            'email' => 'vitoria@gmail.com',
+            'pais' => 'Brasil',
+            'cidade' => 'Rio de Janeiro',
         ]);
 
         DB::table('profile')->insert([
-            'nome' 		    => 'Maria',
-            'sobrenome'     => 'santos',
-            'email'         => 'maria@gmail.com',
-			'pais' 		    => 'Brasil',
-			'cidade' 		=> 'Rio de Janeiro'
+            'nome' => 'Maria',
+            'sobrenome' => 'santos',
+            'email' => 'maria@gmail.com',
+            'pais' => 'Brasil',
+            'cidade' => 'Rio de Janeiro',
         ]);
 
         DB::table('profile')->insert([
-            'nome' 		    => 'Joana',
-            'sobrenome'     => 'santos',
-            'email'         => 'joana@gmail.com',
-			'pais' 		    => 'Brasil',
-			'cidade' 		=> 'Rio de Janeiro'
+            'nome' => 'Joana',
+            'sobrenome' => 'santos',
+            'email' => 'joana@gmail.com',
+            'pais' => 'Brasil',
+            'cidade' => 'Rio de Janeiro',
         ]);
     }
 }
