@@ -28,4 +28,24 @@ class Corporativa extends Model
         'modalidade',
         'salario',
     ];
+
+    public function showCorporativa($corporativa){
+
+    }
+
+    public function listCorporativas(){
+
+    }
+
+    public function saveCorporativa($dados){
+
+    }
+
+    public function updateCorporativa($corporativa){
+
+    }
+
+    public function deleteCorporativa($corporativa){
+
+    }
 }

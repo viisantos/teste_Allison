@@ -28,4 +28,24 @@ class Profile extends Model
         'pais',
         'cidade',
     ];
+
+    public function showProfile($profile){
+
+    }
+
+    public function listProfiles(){
+
+    }
+
+    public function saveProfile($dados){
+
+    }
+
+    public function updateProfile($profile){
+
+    }
+
+    public function deleteProfile($profile){
+
+    }
 }
