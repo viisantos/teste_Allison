@@ -6,9 +6,12 @@ use App\Models\Allison_desafio_models\Profile;
 use Illuminate\Http\Request;
 use App\Services\ProfileService;
 use App\Http\Resources\ProfileResource;
+use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\ProfileStoreRequest;
 
 class ProfileController extends Controller
 {
+    public $profileService;
     public function __construct(ProfileService $profileService)
     {
         $this->profileService = $profileService;
@@ -18,9 +21,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProfileService $profileService)
+    public function index()
     {
-        $dados = $profileservice->listProfiles();
+        $dados = $this->profileService->listProfiles();
 
         if($dados){
             return ProfileResource::collection($dados);
@@ -34,7 +37,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ProfileService $profileService)
+    public function create()
     {
         //
     }
@@ -44,9 +47,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ProfileService $profileService)
+    public function store(ProfileStoreRequest $request)
     {
-        $dados = $profileService->saveProfile($request->all());
+        $dados = $this->profileService->saveProfile($request->all());
         $dados = ProfileResource::collection($dados);
 
         if($dados){
@@ -61,9 +64,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile, ProfileService $profileService)
+    public function show(Profile $profile)
     {
-        $dados = $profileService->showProfile($profile);
+        $dados = $this->profileService->showProfile($profile);
         $dados = ProfileResource::collection($dados);
 
         if($dados){
@@ -80,7 +83,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile, ProfileService $profileService)
+    public function edit(Profile $profile)
     {
         //
     }
@@ -90,9 +93,10 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile, ProfileService $profileService)
+    public function update(ProfileUpdateRequest $request, $profile)
     {
-        $dados = $profileService->updateProfile($profile);
+        $data = $request->all();
+        $dados = $this->profileService->updateProfile($profile, $data);
         $dados = ProfileResource::collection($dados);
 
         if($dados){
@@ -107,9 +111,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Profile $profile, ProfileService $profileService)
+    public function destroy(Request $request, Profile $profile)
     {
-        $dados = $profileService->deleteProfile($profile);
+        $dados = $this->profileService->deleteProfile($profile);
         $dados = ProfileResource::collection($dados);
 
         if($dados){

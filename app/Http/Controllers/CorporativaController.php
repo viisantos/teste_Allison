@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Allison_desafio_models\Corporativa;
+use App\Http\Resources\CorporativaResource;
 use Illuminate\Http\Request;
+use App\Services\CorporativaService;
+use App\Http\Requests\CorporativaStoreRequest;
+use App\Http\Requests\CorporativaUpdateRequest;
 
 class CorporativaController extends Controller
 {
-    public $corp;
+    public $corporativaService;
 
-    public function __construct(Corporativa $corp)
+    public function __construct(CorporativaService $corp)
     {
-        $this->corp = $corp;
+        $this->corporativaService = $corp;
     }
 
     /**
@@ -19,11 +23,15 @@ class CorporativaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $corp = $this->corp->all();
+        $dados = $this->corporativaService->listCorporativas();
 
-        return $corp->toJson();
+        if($dados){
+            return CorporativaResource::collection($dados);
+        }else{
+            return ['erro' => 'Não foi possível retornar os recursos.'];
+        }
     }
 
     /**
@@ -41,9 +49,16 @@ class CorporativaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CorporativaStoreRequest $request)
     {
-        
+        $dados = $this->corporativaService->saveCorporativa($request->all());
+        $dados = CorporativaResource::collection($dados);
+
+        if($dados){
+            return ['sucesso' => 'dados cadaastrados'];
+        }else{
+            return ['erro' => 'nao foi possivel realizar o cadastro.'];
+        }
     }
 
     /**
@@ -52,9 +67,16 @@ class CorporativaController extends Controller
      * @param  int
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($corp)
     {
-       
+        $dados = $this->corporativaService->showCorporativa($corp);
+        $dados = CorporativaResource::collection($dados);
+
+        if($dados){
+            return $dados;
+        }else{
+            return ['erro' => 'Recurso não encontrado'];
+        }
     }
 
     /**
@@ -73,15 +95,17 @@ class CorporativaController extends Controller
      * @param  int  $corp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CorporativaUpdateRequest $request, $corp)
     {
-        $corp = $this->corp->find($id);
-        if ($corp === null) {
-            return ['erro' => 'nao foi possivel realizar a atualizacao. Recurso solicitado nao existe'];
-        }
-        $corp->update($request->all());
+        $data = $request->all();
+        $dados = $this->corporativaService->updateCorporativa($corp, $data);
+        $dados = CorporativaResource::collection($dados);
 
-        return $corp;
+        if($dados){
+            return $dados;
+        }else{
+            return ['erro' => 'Não foi possível atualizar o recurso.'];
+        }
     }
 
     /**
@@ -90,14 +114,15 @@ class CorporativaController extends Controller
      * @param  int
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($corp)
     {
-        $corp = $this->corp->find($id);
-        if ($corp === null) {
-            return ['erro' => 'recurso solicitado nao existe'];
-        }
-        $corp->delete();
+        $dados = $this->corporativaService->deleteCorporativa($corp);
+        $dados = CorporativaResource::collection($dados);
 
-        return ['msg' => 'chegamos no método delete de corp'];
+        if($dados){
+            return $dados;
+        }else{
+            return ['erro' => 'não foi possível excluir o recurso'];
+        }
     }
 }

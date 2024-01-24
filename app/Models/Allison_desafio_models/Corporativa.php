@@ -30,22 +30,39 @@ class Corporativa extends Model
     ];
 
     public function showCorporativa($corporativa){
-
+        return $this->find($corporativa)->first();
     }
 
     public function listCorporativas(){
-
+        return $this->all();
     }
 
     public function saveCorporativa($dados){
-
+        $corp                     = new Corporativa;
+        $corp->profile_id         = $dados->profile_id;
+        $corp->cargo              = $dados->cargo;
+        $corp->funcao             = $dados->funcao;
+        $corp->tipo_de_tecnologia = $dados->tipo_de_tecnologia;
+        $corp->empresa            = $dados->empresa;
+        $corp->modalidade         = $dados->modalidade;
+        $corp->salario            = $dados->salario;
+        $corp->save();
     }
 
-    public function updateCorporativa($corporativa){
-
+    public function updateCorporativa($corporativa, $data){
+        $this->where('id', $corporativa)
+        ->update([
+         'profile_id'          => $data->profile_id,
+         'cargo'               => $data->cargo,
+         'funcao'              => $data->funcao,
+         'tipo_de_tecnologia'  => $data->tipo_de_tecnologia,
+         'empresa'             => $data->empresa,
+         'modalidade'          => $data->modalidade,
+         'salario'             => $data->salario
+         ]);
     }
 
     public function deleteCorporativa($corporativa){
-
+        $this->destroy($corporativa);
     }
 }
