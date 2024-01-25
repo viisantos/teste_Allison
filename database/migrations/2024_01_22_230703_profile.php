@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profile', function (Blueprint $table) {
-            $table->id('id');
+            $table->uuid('id')->primary()->unique();
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('email');

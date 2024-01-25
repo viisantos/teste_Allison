@@ -17,6 +17,7 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => $this->faker->uuid,
             'nome' => $this->faker->firstName,
             'sobrenome' => $this->faker->lastName,
             'email' => $this->faker->safeEmail,

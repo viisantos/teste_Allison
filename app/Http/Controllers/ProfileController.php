@@ -49,13 +49,15 @@ class ProfileController extends Controller
      */
     public function store(ProfileStoreRequest $request)
     {
-        $dados = $this->profileService->saveProfile($request->all());
-        $dados = ProfileResource::collection($dados);
+        try {
+            $data = $request->all();
+            $profile = $this->profileService->saveProfile($data);
 
-        if($dados){
-            return ['sucesso' => 'dados cadaastrados'];
-        }else{
-            return ['erro' => 'nao foi possivel realizar o cadastro.'];
+            return (new ProfileResource($profile))
+                ->response()
+                ->setStatusCode(201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 422);
         }
     }
 

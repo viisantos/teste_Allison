@@ -23,7 +23,7 @@ class CorporativaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $dados = $this->corporativaService->listCorporativas();
 
@@ -51,9 +51,9 @@ class CorporativaController extends Controller
      */
     public function store(CorporativaStoreRequest $request)
     {
-        $dados = $this->corporativaService->saveCorporativa($request->all());
-        $dados = CorporativaResource::collection($dados);
-
+        $dados_ = CorporativaResource::collection($request->all());
+        $dados = $this->corporativaService->saveCorporativa($dados_);
+        
         if($dados){
             return ['sucesso' => 'dados cadaastrados'];
         }else{

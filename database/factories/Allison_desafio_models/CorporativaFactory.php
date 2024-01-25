@@ -18,6 +18,7 @@ class CorporativaFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => $this->faker->uuid,
             'profile_id' => Profile::factory(),
             'cargo' => $this->faker->randomElement(['dev jr', 'dev pleno', 'dev senior']),
             'funcao' => $this->faker->randomElement(['dev jr', 'dev pleno', 'dev senior']),

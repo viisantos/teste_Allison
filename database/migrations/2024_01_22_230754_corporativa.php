@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('corporativa', function (Blueprint $table) {
-            $table->id('id');
+            $table->uuid('id')->primary()->unique();
             $table->integer('profile_id')->unsigned();
             $table->enum('cargo', ['dev jr', 'dev pleno', 'dev senior']);
             $table->enum('funcao', ['dev jr', 'dev pleno', 'dev senior']);
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('empresa');
             $table->string('modalidade');
             $table->decimal('salario');
-            $table->foreign('profile_id')->references('id')->on('profile')->onDelete('cascade');
+            //$table->foreign('profile_id')->references('id')->on('profile')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

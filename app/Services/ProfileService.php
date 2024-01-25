@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Config;
 use App\Models\Allison_desafio_models\Profile;
+use Illuminate\Support\Facades\Validator;
 
 Config::set('app.timezone', 'America/Sao_Paulo');
 
@@ -24,8 +25,20 @@ class ProfileService
         return $this->profileModel->listProfiles();
     }
 
-    public function saveProfile($dados){
-         $this->profileModel->saveProfile($dados);
+    public function saveProfile($dados) {
+        // $this->profileModel->saveProfile($dados);
+        $validator = Validator::make($dados, [
+            'nome' => 'required',
+            'sobrenome' => 'required', 
+            'email' => 'required', 
+            'pais' => 'required',
+            'cidade' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first(), 422);
+        }
+        return Profile::create($dados);
     }
 
     public function updateProfile($profile, $data){

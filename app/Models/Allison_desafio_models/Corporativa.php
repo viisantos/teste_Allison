@@ -4,11 +4,15 @@ namespace App\Models\Allison_desafio_models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Corporativa extends Model
 {
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
+    use SoftDeletes;
+    use HasUuids;
 
     protected $dates = ['deleted_at'];
 

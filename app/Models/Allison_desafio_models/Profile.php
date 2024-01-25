@@ -2,6 +2,7 @@
 
 namespace App\Models\Allison_desafio_models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ class Profile extends Model
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
     use SoftDeletes;
+    use HasUuids;
 
     protected $dates = ['deleted_at'];
 
@@ -22,11 +24,9 @@ class Profile extends Model
     ];
 
     protected $fillable = [
-        'id',
         'nome',
         'sobrenome',
         'email',
-        'senha',
         'pais',
         'cidade',
     ];
@@ -39,17 +39,10 @@ class Profile extends Model
         return $this->all();
     }
 
+    /*
     public function saveProfile($dados){
-        $profile            = new Profile;
-        $profile->nome      = $dados->nome;
-        $profile->sobrenome = $dados->sobrenome;
-        $profile->email     = $dados->email;
-        $profile->senha     = Hash::make($dados->senha);
-        $profile->pais      = $dados->pais;
-        $profile->cidade    = $dados->cidade;
-        $profile->save();
-
-    }
+       return Profile::create($dados);
+    }*/
 
     public function updateProfile($profile, $data){
         $this->where('id', $profile)

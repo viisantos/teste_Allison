@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileStoreRequest extends FormRequest
+class ProfileUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +23,11 @@ class ProfileStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome'      => 'required|string|max:255',
-            'sobrenome' => 'required|string|max:255',
-            'email'     => 'required|email|unique:profile,email',
-            'pais'      => 'required|string|max:255',
-            'cidade'    => 'required|string|max:255',
+            'nome'      => ['required|string|max:255'],
+            'sobrenome' => ['required|string|max:255'],
+            'email'     => ['required|email|unique:profile,email'],
+            'pais'      => ['required|string|max:255'],
+            'cidade'    => ['required|string|max:255]'],
         ];
     }
 }
