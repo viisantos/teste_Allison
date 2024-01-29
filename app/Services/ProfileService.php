@@ -38,7 +38,7 @@ class ProfileService
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first(), 422);
         }
-        return Profile::create($dados);
+        return $this->profileModel->saveProfile($dados);
     }
 
     public function updateProfile($profile, $data){

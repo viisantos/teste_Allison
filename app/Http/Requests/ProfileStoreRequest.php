@@ -22,11 +22,11 @@ class ProfileStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome'      => 'required|string|max:255',
-            'sobrenome' => 'required|string|max:255',
-            'email'     => 'required|email|unique:profile,email',
-            'pais'      => 'required|string|max:255',
-            'cidade'    => 'required|string|max:255',
+            "nome"      => ['required|string|max:255'],
+            "sobrenome" => ['required|string|max:255]',
+            "email"     => ['required|email|unique:profile,email'],
+            "pais"      => ['required|string|max:255'],
+            "cidade"    => ['required|string|max:255']
         ];
     }
 }

@@ -49,15 +49,14 @@ class ProfileController extends Controller
      */
     public function store(ProfileStoreRequest $request)
     {
+        dd($request);
         try {
             $data = $request->all();
             $profile = $this->profileService->saveProfile($data);
 
-            return (new ProfileResource($profile))
-                ->response()
-                ->setStatusCode(201);
+            return response()->json(['message' => 'Perfil cadastrado com sucesso', 'profile' => new ProfileResource($profile)], 201, [], JSON_PRETTY_PRINT);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 422);
+            return response()->json(['error' => $e->getMessage()], 422, [], JSON_PRETTY_PRINT);
         }
     }
 

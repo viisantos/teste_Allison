@@ -39,10 +39,10 @@ class Profile extends Model
         return $this->all();
     }
 
-    /*
+    
     public function saveProfile($dados){
        return Profile::create($dados);
-    }*/
+    }
 
     public function updateProfile($profile, $data){
         $this->where('id', $profile)
